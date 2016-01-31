@@ -157,6 +157,7 @@ static MPInstanceProvider *sharedAdProvider = nil;
         MPLogError(@"**** Custom Event Class: %@ does not extend MPInterstitialCustomEvent ****", NSStringFromClass(customClass));
         return nil;
     }
+    #pragma GCC diagnostic ignored "-Wundeclared-selector"
     if ([customEvent respondsToSelector:@selector(customEventDidUnload)]) {
         MPLogWarn(@"**** Custom Event Class: %@ implements the deprecated -customEventDidUnload method.  This is no longer called.  Use -dealloc for cleanup instead ****", NSStringFromClass(customClass));
     }
