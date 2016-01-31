@@ -76,13 +76,15 @@
             [[MPActivityItemProviderWithSubject alloc] initWithSubject:subject body:body];
         UIActivityViewController *activityViewController =
             [[UIActivityViewController alloc] initWithActivityItems:@[activityItemProvider] applicationActivities:nil];
-        #pragma GCC diagnostic ignored "-Wdeprecated"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated"
         activityViewController.completionHandler = ^
             (NSString* activityType, BOOL completed) {
                 if ([self.delegate respondsToSelector:@selector(activityViewControllerDidDismiss)]) {
                     [self.delegate activityViewControllerDidDismiss];
                 }
             };
+#pragma GCC diagnostic pop
         return activityViewController;
     } else {
         return nil;

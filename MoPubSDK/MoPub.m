@@ -67,8 +67,8 @@
 - (void)initializeRewardedVideoWithGlobalMediationSettings:(NSArray *)globalMediationSettings delegate:(id<MPRewardedVideoDelegate>)delegate
 {
     // initializeWithDelegate: is a known private initialization method on MPRewardedVideo. So we forward the initialization call to that class.
-    #pragma GCC diagnostic ignored "-Wundeclared-selector"
-    [MPRewardedVideo performSelector:@selector(initializeWithDelegate:) withObject:delegate];
+    SEL initializeWithDelegate = NSSelectorFromString(@"initializeWithDelegate:");
+    [MPRewardedVideo performSelector:initializeWithDelegate withObject:delegate];
     self.globalMediationSettings = globalMediationSettings;
 }
 
